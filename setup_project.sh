@@ -47,3 +47,27 @@ PROJECT_DIR= "attendance_tracker_{$INPUT}"
 echo ""
 echo "Project Directory will be: $PROJECT_DIR"
 echo ""
+
+
+if [ -d "$PROJECT_DIR" ]; then 
+	echo " Warning: Directory '$PORJECT_DIR' already exists "
+	read -p "Do you want to overwrite it? (yes/no): " OVERWRITE
+
+	if [ "$OVERWRITE" != "yes" ]; then 
+
+	echo " Exiting without making changes. "
+	exit 0
+	
+fi
+
+rm -rf "$PROJECT_DIR"
+ 
+echo " Creating The Directory Structure.." 
+
+mkdir "$PROJECT_DIR"
+
+mkdir -p "$PROJECT_DIR/Helpers"
+
+mkdir -p "$PROJECT_DIR/reports"
+
+echo " Directory Structure Created."
