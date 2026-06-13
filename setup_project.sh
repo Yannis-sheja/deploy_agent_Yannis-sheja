@@ -1,5 +1,7 @@
 #!/bin/bash 
+
 set -e 
+
 cleanup() {
 
 	echo ""
@@ -27,3 +29,21 @@ exit 1
 trap cleanup SIGINT 
 
 
+echo ""
+echo " Student Attendance Tracker: Project Factory "
+echo "" 
+echo ""
+
+read -p " Enter the Project Name(i.e Name of directory eg; semester 1): " INPUT
+
+if [ -z "$INPUT" ]; then 
+	echo " Error: Project Name cannot be empty. Exiting "
+
+	exit 1
+fi 
+
+PROJECT_DIR= "attendance_tracker_{$INPUT}"
+
+echo ""
+echo "Project Directory will be: $PROJECT_DIR"
+echo ""
