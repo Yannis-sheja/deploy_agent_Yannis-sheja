@@ -32,9 +32,9 @@ trap cleanup SIGINT
 
 # PART 2: WELCOME BANNER
 
-echo ""
+echo "----------------------------------------------"
 echo " Student Attendance Tracker: Project Factory "
-echo "" 
+echo "----------------------------------------------" 
 echo ""
 
 #PART 3: GETTING USER INPUT 
@@ -100,9 +100,9 @@ find "$PROJECT_DIR" -not name ".*" | sort
 #PART 6: DYNAMIC CONFIGURATION 
 
 echo ""
-echo "" 
+echo "----------------------" 
 echo " Configuration Setup " 
-echo ""
+echo "----------------------"
 echo " Current attendance tresholds:"
 echo " Warning threshold: 75% "
 echo " Failure threshold: 50% "
@@ -159,9 +159,50 @@ if [ "$UPDATE_CONFIG" = "yes" ]; then
 else 
 	echo " Keeping default thresholds (warning: 75%, failure: 50%). "
 fi 
+#PART 7: ENVIRONMENT VALIDATION
 
+echo "" 
+echo "---------------------------------"
+echo " Environment Health Check " 
+echo "---------------------------------"
 
-   
+if commad -v python3 &>/dev/null; then 
+	PYTHON_VERSION=$(python3 --version)
+	echo " Python3 is installed: $PYTHON_VERSION "
+else
+	echo " Warning: Python3 is NOT installed in the system." 
+	echo " The attendance_checker.py script will not run without Python3."
+	echo " Install it with: sudo apt install python3 "
+fi
 
+echo ""
+echo " Verifying Directory structure."
 
-    
+EXPECTED_PATHS=( 
+	"$PROJECT_DIR/attendance_checker.py"
+	"$PROJECT_DIR/Helpers"
+	"$PROJECT_DIR/Helpers/assets.csv"
+	"$PROJECT_DIR/Helpers/config/json"
+	"$PROJECT_DIR/reports"
+	"$PROJECT_DIR/reports/reports/log"
+)
+
+ALL_GOOD=true 
+
+for PATH_CHECK in "${EXPECTED_PATHS[@]}"; do 
+	if [ -e "$PATH_CHECK" ]; then
+		echo " Found: $PATH_CHECK "
+	else 
+		echo " Missing: $PATH_CHECK " 
+		ALL_GOOD=false
+	fi
+
+done
+
+echo ""
+if [ "$ALL_GOOD" = true ]; then
+	echo " All Health checks passed! The Project is ready. "
+else
+	echo " Some files are missing. Please check the output above."
+fi 
+
