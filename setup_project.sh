@@ -2,7 +2,7 @@
 
 set -e
 
-# PART 1: SIGNAL TRAP 
+# PART 1: PROCESS MANAGEMENT  
 
 cleanup() {
 
@@ -110,4 +110,58 @@ echo ""
 
 read -p " Do you want to update the attendance thresholds? (yes/no): " UPDATE_CONFIG 
 
+if [ "$UPDATE_CONFIG" = "yes" ]; then 
+	read -p "Enter new Warning threshold (default 75, numbers only): " NEW_WARNING 
 
+	if ![[ "$NEW_WARNING" =~ ^[0-9]+$ ]]; then
+		echo " Invalid Input: '$NEW_WARNING' is not a number. Keeping default 75. "
+		NEW_WARNING=75 
+	fi 
+	
+	if [ "$NEW_WARNING" -gt 100 ] || [ "$NEW_WARNING" -lt 0 ]; then 
+		echo " Warning threshold must be between 0 and 100. Keeping default 75. " 
+		NEW_WARNING=75
+	fi
+
+	read -p "Enter new Failure threshold (default 50, numbers only): " NEW_FAILURE 
+
+	if ![[ "$NEW_FAILURE" =~ ^[0-9]+$ ]]; then
+		echo " Invalid Input: '$NEW_FAILURE' is not number. Keeping default 50. " 
+		NEW_FAILURE=50 
+	fi
+	
+	if [ "$NEW_FAILURE" -gt 100 ] || [ "$NEW_FAILURE" -lt 0 ]; then
+		echo " Failure threshold must be between 0 and 100. Keeping default 50. " 
+		NEW_FAILURE=50 
+	fi 
+
+	if [ "$NEW_FAILURE" -ge "$NEW_WARNING" ]; then
+		echo " Failure threshold must be less than the Warning threshold. Keeping defaults. " 
+		NEW_WARNING=75
+		NEW_FAILURE=50
+	fi
+
+
+	echo ""
+	echo " Updating config.json using sed. "
+	
+	
+	sed -i "s/\(\"warning_threshold\": \)[0-9]*/\1${NEW_WARNING}/" \ 
+		"$PROJECT_DIR/Helpers/config.json"
+
+	sed -i "s/\(\"failure_threshold\": \)[0-9]*/\1${NEW_FAILURE}/" \
+        "$PROJECT_DIR/Helpers/config.json"
+
+	echo " config.json updated "
+
+	cat "$PROJECT_DIR/Helpers/config.json"
+	
+else 
+	echo " Keeping default thresholds (warning: 75%, failure: 50%). "
+fi 
+
+
+   
+
+
+    
