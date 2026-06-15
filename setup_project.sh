@@ -206,3 +206,18 @@ else
 	echo " Some files are missing. Please check the output above."
 fi 
 
+#PART 8: COMPLETION MESSAGE
+
+echo"" 
+echo "------------------------------"
+echo " Setup Complete " 
+echo "------------------------------"
+echo ""
+echo " Project created at: ./$PROJECT_DIR "
+echo " To run the attendance checker: "
+echo " cd $PROJECT_DIR "
+echo " python3 attendance_checker.py " 
+echo ""
+echo " To trigger the archive or cleanup (simulate interrupt) "
+echo " Press Ctrl+C while script is running " 
+echo "-------------------------------------------
