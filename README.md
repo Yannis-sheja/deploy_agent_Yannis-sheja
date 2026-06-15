@@ -1,1 +1,45 @@
-# deploy_agent_Yannis-sheja-
+* deploy_agent_Yannis-sheja
+
+* Student Attendance Tracker — Project Factory Script
+
+This repository contains `setup_project.sh`, a shell script that automates
+the creation of a workspace for the Student Attendance Tracker application.
+
+---
+
+*How to Run the Script
+
+*Prerequisites
+- Ubuntu, WSL (Windows Subsystem for Linux), or any Linux terminal
+- `bash` (pre-installed on all Linux systems)
+- `python3` (recommended; script will warn if missing)
+
+Step 1 — Cloning the Repository
+
+```bash
+git clone https://github.com/YourUsername/deploy_agent_YourUsername.git
+cd deploy_agent_YourUsername
+```
+
+Step 2 — Make the Script Executable by using Permission command( chmod )
+
+```bash
+chmod +x setup_project.sh
+```
+
+Step 3 — Run the Script by using bash or (./)
+
+```bash
+./setup_project.sh
+```
+
+The script will:
+1. Ask you for a project name (e.g., `semester1`)
+2. Create the directory `attendance_tracker_semester1/` with the full structure
+3. Ask if you want to update attendance thresholds
+4. Edit `config.json` using `sed` if you choose to update
+5. Verify Python3 is installed and all files are present
+
+---
+
+## Directory Structure Created
