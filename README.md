@@ -43,6 +43,8 @@ The script will:
 ---
 
 *Directory Structure Created
+
+
 attendance_tracker_{input}/
 ├── attendance_checker.py
 ├── Helpers/
