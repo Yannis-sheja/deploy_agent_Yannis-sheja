@@ -147,10 +147,10 @@ if [ "$UPDATE_CONFIG" = "yes" ]; then
 	echo " Updating config.json using sed. "
 
 
-	sed -i "s/\(\"warning_threshold\": \)[0-9]*/\1${NEW_WARNING}/" \
+	sed -i "s/\"warning\": [0-9]*/\"warning\": ${NEW_WARNING}/" \
 		"$PROJECT_DIR/Helpers/config.json"
 
-	sed -i "s/\(\"failure_threshold\": \)[0-9]*/\1${NEW_FAILURE}/" \
+	sed -i "s/\"failure\": [0-9]*/\"failure\": ${NEW_FAILURE}/" \
         "$PROJECT_DIR/Helpers/config.json"
 
 	echo " config.json updated "
