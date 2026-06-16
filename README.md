@@ -42,6 +42,8 @@ The script will:
 5. Verify Python3 is installed and all files are present
 
 *Directory Structure Created
+
+
 attendance_tracker_{input}/
 ├── attendance_checker.py
 ├── Helpers/
