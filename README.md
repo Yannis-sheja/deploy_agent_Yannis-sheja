@@ -83,3 +83,7 @@ The Files in This Repository
 | `README.md` | This file |
 
 EOF
+
+Link to the video: 
+
+https://www.loom.com/share/db6c7b37a37f41d78990e05ed9350a51
