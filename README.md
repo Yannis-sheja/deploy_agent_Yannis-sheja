@@ -42,4 +42,42 @@ The script will:
 
 ---
 
-## Directory Structure Created
+*Directory Structure Created
+attendance_tracker_{input}/
+├── attendance_checker.py
+├── Helpers/
+│   ├── assets.csv
+│   └── config.json
+└── reports/
+└── reports.log
+---
+
+** How to Trigger the Archive Feature (SIGINT / Ctrl+C)
+
+The script includes a Signal Trap for SIGINT (Ctrl+C).
+
+To trigger it:
+1. Run the script: `./setup_project.sh`
+2. When it is prompted (e.g., for project name or thresholds), press the Ctrl+C key 
+
+This is What happens:
+- The script catches the interrupt signal
+- It archives the current state of the project directory into `attendance_tracker_{input}_archive.tar.gz`
+- It deletes the incomplete project directory
+- It exits cleanly
+
+This ensures no broken or incomplete directories are left behind.
+
+---
+
+The Files in This Repository
+
+| File | Description |
+| `setup_project.sh` | The bootstrapping script |
+| `attendance_checker.py` | Python app source code |
+| `assets.csv` | Sample student attendance data |
+| `config.json` | Threshold configuration |
+| `reports.log` | Log file template |
+| `README.md` | This file |
+
+EOF
